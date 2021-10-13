@@ -116,9 +116,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_common_extend__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/forum/components/CommentPost */ "flarum/forum/components/CommentPost");
 /* harmony import */ var flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/models/User */ "flarum/common/models/User");
-/* harmony import */ var flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3__);
-
 
 
 
@@ -126,17 +123,9 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'oncreate', function () {
     var _this = this;
 
-    var FindUser = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.store.find('users').then(function (UserList) {
-      _this.members = UserList;
-      console.log(UserList);
-      m.redraw();
-    });
-    var post = this.attrs.post;
-    var postAuthor = post.user().id();
-    console.log(postAuthor);
     var user = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
 
-    if (flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3___default.a) {
+    if (user) {
       var giveMeInfo = fetch("https://ipinfo.io/json?token=dd2f6ac5f2e4d0").then(function (response) {
         return response.json();
       }).then(function (data) {
@@ -171,17 +160,6 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['common/extend'];
-
-/***/ }),
-
-/***/ "flarum/common/models/User":
-/*!***********************************************************!*\
-  !*** external "flarum.core.compat['common/models/User']" ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = flarum.core.compat['common/models/User'];
 
 /***/ }),
 
