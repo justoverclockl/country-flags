@@ -5,10 +5,11 @@ import User from 'flarum/common/models/User';
 import Model from 'flarum/common/Model';
 import AddCountryCodeField from "./components/AddCountryCodeField";
 import UserCard from 'flarum/forum/components/UserCard';
+import EditUserModal from "flarum/forum/components/EditUserModal";
+import Stream from "flarum/utils/Stream";
 
 app.initializers.add('justoverclock/user-country-info', () => {
   User.prototype.countryCode = Model.attribute('countryCode');
-
   extend(SettingsPage.prototype, 'settingsItems', function (items){
     items.add(
       'countryFlag',
@@ -27,4 +28,28 @@ app.initializers.add('justoverclock/user-country-info', () => {
       </div>
     )
   })
+  extend(EditUserModal.prototype, "oninit", function () {
+    this.countryCode = Stream(this.attrs.user.countryCode());
+  });
+
+  extend(EditUserModal.prototype, "fields", function (items) {
+    items.add(
+      "countryCode",
+      <div className="Form-group">
+        <label>{app.translator.trans('justoverclock-country-flags.forum.inputCountryCode')}</label>
+        <input
+          className="FormControl"
+          bidi={this.countryCode}
+        />
+      </div>,
+      1
+    );
+  });
+
+  extend(EditUserModal.prototype, "data", function (data) {
+    const user = this.attrs.user;
+    if (this.countryCode() !== user.countryCode()) {
+      data.countryCode = this.countryCode();
+    }
+  });
 });

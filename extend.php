@@ -11,9 +11,9 @@
 
 namespace Justoverclock\CountryFlags;
 
+use Flarum\Settings\Event\Serializing;
 use Justoverclock\CountryFlags\Listeners\SaveCountryCodeToDatabase;
 use Justoverclock\CountryFlags\Listeners\AddCountryFlagAttributes;
-use Justoverclock\CountryFlags\Listeners\SaveCountryCode;
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Extend;
 use Flarum\User\Event\Saving;
@@ -28,6 +28,7 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Event())
+        ->listen(Serializing::class, AddCountryFlagAttributes::class)
         ->listen(Saving::class, SaveCountryCodeToDatabase::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))
