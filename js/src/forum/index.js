@@ -3,50 +3,44 @@ import { extend } from 'flarum/common/extend';
 import SettingsPage from 'flarum/forum/components/SettingsPage';
 import User from 'flarum/common/models/User';
 import Model from 'flarum/common/Model';
-import AddCountryCodeField from "./components/AddCountryCodeField";
+import AddCountryCodeField from './components/AddCountryCodeField';
 import UserCard from 'flarum/forum/components/UserCard';
-import EditUserModal from "flarum/forum/components/EditUserModal";
-import Stream from "flarum/utils/Stream";
+import EditUserModal from 'flarum/forum/components/EditUserModal';
+import Stream from 'flarum/utils/Stream';
 
 app.initializers.add('justoverclock/user-country-info', () => {
   User.prototype.countryCode = Model.attribute('countryCode');
-  extend(SettingsPage.prototype, 'settingsItems', function (items){
-    items.add(
-      'countryFlag',
-      <AddCountryCodeField />
-    )
-  })
+
+  extend(SettingsPage.prototype, 'settingsItems', function (items) {
+    items.add('countryFlag', <AddCountryCodeField />);
+  });
   extend(UserCard.prototype, 'infoItems', function (items) {
-    const user = this.attrs.user
+    const user = this.attrs.user;
     let countryFlag = user.countryCode();
     if (countryFlag === '') return;
     let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
+
     items.add(
-      "ipinfo",
+      'ipinfo',
       <div className="ipinfo" id="countryCode">
-        <img className="countryFlag" src={flagImage} width="25" height="25"/>
+        <img className="countryFlag" src={flagImage} width="25" height="25" />
       </div>
-    )
-  })
-  extend(EditUserModal.prototype, "oninit", function () {
+    );
+  });
+  extend(EditUserModal.prototype, 'oninit', function () {
     this.countryCode = Stream(this.attrs.user.countryCode());
   });
-
-  extend(EditUserModal.prototype, "fields", function (items) {
+  extend(EditUserModal.prototype, 'fields', function (items) {
     items.add(
-      "countryCode",
+      'countryCode',
       <div className="Form-group">
         <label>{app.translator.trans('justoverclock-country-flags.forum.inputCountryCode')}</label>
-        <input
-          className="FormControl"
-          bidi={this.countryCode}
-        />
+        <input className="FormControl" bidi={this.countryCode} />
       </div>,
       1
     );
   });
-
-  extend(EditUserModal.prototype, "data", function (data) {
+  extend(EditUserModal.prototype, 'data', function (data) {
     const user = this.attrs.user;
     if (this.countryCode() !== user.countryCode()) {
       data.countryCode = this.countryCode();
