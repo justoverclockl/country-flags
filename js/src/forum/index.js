@@ -33,7 +33,10 @@ app.initializers.add('justoverclock/user-country-info', () => {
   extend(EditUserModal.prototype, 'fields', function (items) {
     items.add(
       'countryCode',
-      <AddCountryCodeField />,
+      <div className="Form-group">
+        <label>{app.translator.trans('justoverclock-country-flags.forum.inputCountryCode')}</label>
+        <input className="FormControl" bidi={this.countryCode} />
+      </div>,
       1
     );
   });
