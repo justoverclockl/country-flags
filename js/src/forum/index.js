@@ -6,7 +6,6 @@ import Model from 'flarum/common/Model';
 import AddCountryCodeField from "./components/AddCountryCodeField";
 import UserCard from 'flarum/forum/components/UserCard';
 
-
 app.initializers.add('justoverclock/user-country-info', () => {
   User.prototype.countryCode = Model.attribute('countryCode');
 
@@ -20,7 +19,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
     const user = this.attrs.user
     let countryFlag = user.countryCode();
     if (countryFlag === '') return;
-    const flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
+    let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
     items.add(
       "ipinfo",
       <div className="ipinfo" id="countryCode">
