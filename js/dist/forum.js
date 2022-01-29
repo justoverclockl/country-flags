@@ -101,6 +101,101 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _inheritsLoose; });
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPrototypeOf.js */ "./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js");
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  Object(_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(subClass, superClass);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _setPrototypeOf; });
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+
+/***/ "./src/forum/components/AddCountryCodeField.js":
+/*!*****************************************************!*\
+  !*** ./src/forum/components/AddCountryCodeField.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddCountryCodeField; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/forum/app */ "flarum/forum/app");
+/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/Component */ "flarum/Component");
+/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var AddCountryCodeField = /*#__PURE__*/function (_Component) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(AddCountryCodeField, _Component);
+
+  function AddCountryCodeField() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = AddCountryCodeField.prototype;
+
+  _proto.view = function view() {
+    return m("fieldset", {
+      className: "Settings-theme"
+    }, m("legend", null, "Country Code"), m("input", {
+      className: "FormControl countryCode",
+      name: "countryCode",
+      placeholder: "e.g. IT",
+      type: "text",
+      onblur: this.saveValue.bind(this)
+    }));
+  };
+
+  _proto.saveValue = function saveValue(e) {
+    var user = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.session.user;
+    user.save({
+      countryCode: e.target.value
+    });
+  };
+
+  return AddCountryCodeField;
+}(flarum_Component__WEBPACK_IMPORTED_MODULE_2___default.a);
+
+
+
+/***/ }),
+
 /***/ "./src/forum/index.js":
 /*!****************************!*\
   !*** ./src/forum/index.js ***!
@@ -114,41 +209,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/extend */ "flarum/common/extend");
 /* harmony import */ var flarum_common_extend__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/forum/components/CommentPost */ "flarum/forum/components/CommentPost");
-/* harmony import */ var flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_forum_components_SettingsPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/forum/components/SettingsPage */ "flarum/forum/components/SettingsPage");
+/* harmony import */ var flarum_forum_components_SettingsPage__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_SettingsPage__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/models/User */ "flarum/common/models/User");
+/* harmony import */ var flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_common_Model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/common/Model */ "flarum/common/Model");
+/* harmony import */ var flarum_common_Model__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Model__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_AddCountryCodeField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AddCountryCodeField */ "./src/forum/components/AddCountryCodeField.js");
+/* harmony import */ var flarum_forum_components_UserCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/forum/components/UserCard */ "flarum/forum/components/UserCard");
+/* harmony import */ var flarum_forum_components_UserCard__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_UserCard__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
 
 
 
 flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justoverclock/user-country-info', function () {
-  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'oncreate', function () {
-    var _this = this;
-
-    var user = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
-
-    if (user) {
-      var giveMeInfo = fetch("https://ipinfo.io/json?token=dd2f6ac5f2e4d0").then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        _this.ipInfo = data;
-        m.redraw();
-        var setCountryCode = document.getElementById('countryCode').innerText = 'Country: ';
-        var flagImage = 'http://purecatamphetamine.github.io/country-flag-icons/3x2/' + data.country.toUpperCase() + '.svg';
-        var couFlag = document.createElement('img');
-        couFlag.setAttribute('class', 'countryFlag');
-        couFlag.setAttribute('width', '20px');
-        couFlag.setAttribute('height', '20px');
-        couFlag.src = flagImage;
-        document.getElementById('countryCode').appendChild(couFlag);
-      });
-    }
+  flarum_common_models_User__WEBPACK_IMPORTED_MODULE_3___default.a.prototype.countryCode = flarum_common_Model__WEBPACK_IMPORTED_MODULE_4___default.a.attribute('countryCode');
+  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_SettingsPage__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'settingsItems', function (items) {
+    items.add('countryFlag', m(_components_AddCountryCodeField__WEBPACK_IMPORTED_MODULE_5__["default"], null));
   });
-  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'headerItems', function (items) {
+  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_UserCard__WEBPACK_IMPORTED_MODULE_6___default.a.prototype, 'infoItems', function (items) {
+    var user = this.attrs.user;
+    var countryFlag = user.countryCode();
+    if (countryFlag === '') return;
+    var flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
     items.add("ipinfo", m("div", {
       className: "ipinfo",
       id: "countryCode"
-    }));
+    }, m("img", {
+      className: "countryFlag",
+      src: flagImage,
+      width: "25",
+      height: "25"
+    })));
   });
 });
+
+/***/ }),
+
+/***/ "flarum/Component":
+/*!**************************************************!*\
+  !*** external "flarum.core.compat['Component']" ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['Component'];
+
+/***/ }),
+
+/***/ "flarum/common/Model":
+/*!*****************************************************!*\
+  !*** external "flarum.core.compat['common/Model']" ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['common/Model'];
 
 /***/ }),
 
@@ -163,6 +282,17 @@ module.exports = flarum.core.compat['common/extend'];
 
 /***/ }),
 
+/***/ "flarum/common/models/User":
+/*!***********************************************************!*\
+  !*** external "flarum.core.compat['common/models/User']" ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['common/models/User'];
+
+/***/ }),
+
 /***/ "flarum/forum/app":
 /*!**************************************************!*\
   !*** external "flarum.core.compat['forum/app']" ***!
@@ -174,14 +304,25 @@ module.exports = flarum.core.compat['forum/app'];
 
 /***/ }),
 
-/***/ "flarum/forum/components/CommentPost":
-/*!*********************************************************************!*\
-  !*** external "flarum.core.compat['forum/components/CommentPost']" ***!
-  \*********************************************************************/
+/***/ "flarum/forum/components/SettingsPage":
+/*!**********************************************************************!*\
+  !*** external "flarum.core.compat['forum/components/SettingsPage']" ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = flarum.core.compat['forum/components/CommentPost'];
+module.exports = flarum.core.compat['forum/components/SettingsPage'];
+
+/***/ }),
+
+/***/ "flarum/forum/components/UserCard":
+/*!******************************************************************!*\
+  !*** external "flarum.core.compat['forum/components/UserCard']" ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['forum/components/UserCard'];
 
 /***/ })
 

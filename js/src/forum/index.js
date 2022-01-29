@@ -1,31 +1,31 @@
 import app from 'flarum/forum/app';
-import {extend} from 'flarum/common/extend';
-import CommentPost from 'flarum/forum/components/CommentPost';
+import { extend } from 'flarum/common/extend';
+import SettingsPage from 'flarum/forum/components/SettingsPage';
+import User from 'flarum/common/models/User';
+import Model from 'flarum/common/Model';
+import AddCountryCodeField from "./components/AddCountryCodeField";
+import UserCard from 'flarum/forum/components/UserCard';
+
 
 app.initializers.add('justoverclock/user-country-info', () => {
-  extend(CommentPost.prototype, 'oncreate', function () {
-    let user = app.session.user;
-    if (user) {
-      let giveMeInfo = fetch("https://ipinfo.io/json?token=dd2f6ac5f2e4d0")
-        .then((response) => response.json())
-        .then((data) => {
-          this.ipInfo = data;
-          m.redraw();
-          const setCountryCode = document.getElementById('countryCode').innerText = 'Country: ';
-          const flagImage = 'http://purecatamphetamine.github.io/country-flag-icons/3x2/' + data.country.toUpperCase() + '.svg';
-          const couFlag = document.createElement('img');
-          couFlag.setAttribute('class', 'countryFlag');
-          couFlag.setAttribute('width', '20px');
-          couFlag.setAttribute('height', '20px');
-          couFlag.src = flagImage;
-          document.getElementById('countryCode').appendChild(couFlag);
-        })
-    }
+  User.prototype.countryCode = Model.attribute('countryCode');
+
+  extend(SettingsPage.prototype, 'settingsItems', function (items){
+    items.add(
+      'countryFlag',
+      <AddCountryCodeField />
+    )
   })
-  extend(CommentPost.prototype, 'headerItems', function (items) {
+  extend(UserCard.prototype, 'infoItems', function (items) {
+    const user = this.attrs.user
+    let countryFlag = user.countryCode();
+    if (countryFlag === '') return;
+    const flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
     items.add(
       "ipinfo",
-      <div className="ipinfo" id="countryCode"/>
+      <div className="ipinfo" id="countryCode">
+        <img className="countryFlag" src={flagImage} width="25" height="25"/>
+      </div>
     )
   })
 });
