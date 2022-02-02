@@ -28,7 +28,6 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Event())
-        ->listen(Serializing::class, AddCountryFlagAttributes::class)
         ->listen(Saving::class, SaveCountryCodeToDatabase::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))
