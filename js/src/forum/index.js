@@ -7,6 +7,7 @@ import AddCountryCodeField from './components/AddCountryCodeField';
 import UserCard from 'flarum/forum/components/UserCard';
 import EditUserModal from 'flarum/forum/components/EditUserModal';
 import Stream from 'flarum/utils/Stream';
+import CommentPost from 'flarum/forum/components/CommentPost';
 
 app.initializers.add('justoverclock/user-country-info', () => {
   User.prototype.countryCode = Model.attribute('countryCode');
@@ -45,5 +46,18 @@ app.initializers.add('justoverclock/user-country-info', () => {
     if (this.countryCode() !== user.countryCode()) {
       data.countryCode = this.countryCode();
     }
+  });
+  extend(CommentPost.prototype, 'headerItems', function (items) {
+    const user = this.attrs.post.user();
+    let countryFlag = user.countryCode();
+    let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
+    if (countryFlag === '') return;
+    if (!user) return;
+    items.add(
+      'country-flag',
+      <div className="ipinfo" id="countryCode">
+        <img className="countryFlag post" src={flagImage} alt={countryFlag} width="25" height="25" />
+      </div>
+    );
   });
 });
