@@ -275,6 +275,7 @@ export default class AddCountryCodeField extends Component {
     const user = app.session.user;
     user.save({
       countryCode: e.target.value,
-    });
+    })
+      .then(app.alerts.show({type: 'success'}, app.translator.trans('justoverclock-country-flags.forum.countrySaved')))
   }
 }
