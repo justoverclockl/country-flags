@@ -1,6 +1,6 @@
 # Country Flags
 
-Flags icon are offered by https://catamphetamine.gitlab.io/country-flag-icons/3x2/
+Flags icon are offered by https://catamphetamine.gitlab.io/country-flag-icons/3x2/ . Visit the link to see all available flags and country code.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/justoverclock/country-flags.svg)](https://packagist.org/packages/justoverclock/country-flags) [![Total Downloads](https://img.shields.io/packagist/dt/justoverclock/country-flags.svg)](https://packagist.org/packages/justoverclock/country-flags)
 
