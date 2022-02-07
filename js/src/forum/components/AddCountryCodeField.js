@@ -4,7 +4,6 @@ import Component from 'flarum/Component';
 export default class AddCountryCodeField extends Component {
   oninit(vnode) {
     super.oninit(vnode);
-
     this.countryCode = app.session.user.countryCode();
   }
 
@@ -273,9 +272,10 @@ export default class AddCountryCodeField extends Component {
 
   saveValue(e) {
     const user = app.session.user;
-    user.save({
-      countryCode: e.target.value,
-    })
-      .then(app.alerts.show({type: 'success'}, app.translator.trans('justoverclock-country-flags.forum.countrySaved')))
+    user
+      .save({
+        countryCode: e.target.value,
+      })
+      .then(app.alerts.show({ type: 'success' }, app.translator.trans('justoverclock-country-flags.forum.countrySaved')));
   }
 }
