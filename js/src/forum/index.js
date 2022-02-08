@@ -1,5 +1,5 @@
 import app from 'flarum/forum/app';
-import { extend } from 'flarum/common/extend';
+import {extend} from 'flarum/common/extend';
 import SettingsPage from 'flarum/forum/components/SettingsPage';
 import User from 'flarum/common/models/User';
 import Model from 'flarum/common/Model';
@@ -13,7 +13,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
   User.prototype.countryCode = Model.attribute('countryCode');
 
   extend(SettingsPage.prototype, 'settingsItems', function (items) {
-    items.add('countryFlag', <AddCountryCodeField />);
+    items.add('countryFlag', <AddCountryCodeField/>);
   });
   extend(UserCard.prototype, 'infoItems', function (items) {
     const user = this.attrs.user;
@@ -24,7 +24,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
     items.add(
       'ipinfo',
       <div className="ipinfo" id="countryCode">
-        <img className="countryFlag" src={flagImage} width="25" height="25" />
+        <img className="countryFlag" src={flagImage} width="25" height="25"/>
       </div>
     );
   });
@@ -36,7 +36,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
       'countryCode',
       <div className="Form-group">
         <label>{app.translator.trans('justoverclock-country-flags.forum.inputCountryCode')}</label>
-        <input className="FormControl" bidi={this.countryCode} />
+        <input className="FormControl" bidi={this.countryCode}/>
       </div>,
       1
     );
@@ -48,16 +48,18 @@ app.initializers.add('justoverclock/user-country-info', () => {
     }
   });
   extend(CommentPost.prototype, 'headerItems', function (items) {
-    const user = this.attrs.post.user();
-    let countryFlag = user.countryCode();
-    let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
-    if (countryFlag === '') return;
-    if (!user) return;
-    items.add(
-      'country-flag',
-      <div className="ipinfo" id="countryCode">
-        <img className="countryFlag post" src={flagImage} alt={countryFlag} width="25" height="25" />
-      </div>
-    );
-  });
+    if (app.forum.attribute('justoverclock-country-flags.showFlagsOnPosts') === true) {
+      const user = this.attrs.post.user();
+      let countryFlag = user.countryCode();
+      let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
+      if (countryFlag === '') return;
+      if (!user) return;
+      items.add(
+        'country-flag',
+        <div className="ipinfo" id="countryCode">
+          <img className="countryFlag post" src={flagImage} alt={countryFlag} width="25" height="25"/>
+        </div>
+      );
+    }
+  })
 });

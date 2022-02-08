@@ -27,6 +27,8 @@ return [
         ->css(__DIR__.'/less/admin.less'),
     new Extend\Locales(__DIR__.'/locale'),
 
+    (new Extend\Settings())->serializeToForum('justoverclock-country-flags.showFlagsOnPosts', 'justoverclock-country-flags.showFlagsOnPosts', 'boolval', false),
+
     (new Extend\Event())
         ->listen(Saving::class, SaveCountryCodeToDatabase::class),
 

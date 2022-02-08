@@ -3,6 +3,13 @@ import { extend } from 'flarum/common/extend';
 import UserListPage from 'flarum/admin/components/UserListPage';
 
 app.initializers.add('justoverclock/country-flags', () => {
+  app.extensionData
+    .for('justoverclock-country-flags')
+    .registerSetting({
+      setting: 'justoverclock-country-flags.showFlagsOnPosts',
+      label: app.translator.trans('justoverclock-country-flags.admin.showFlagsOnPosts'),
+      type: 'boolean',
+    })
   extend(UserListPage.prototype, 'columns', function (items) {
     items.add(
       'country',
