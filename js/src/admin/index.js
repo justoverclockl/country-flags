@@ -23,7 +23,7 @@ app.initializers.add('justoverclock/country-flags', () => {
 
           return (
             <div>
-              <img className="adminFlag" src={showFlag} alt={countryFlag} />
+              <img className="adminFlag" loading="lazy" src={showFlag} alt={countryFlag} />
             </div>
           );
         },
