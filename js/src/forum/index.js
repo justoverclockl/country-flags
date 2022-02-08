@@ -24,7 +24,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
     items.add(
       'ipinfo',
       <div className="ipinfo" id="countryCode">
-        <img className="countryFlag" src={flagImage} width="25" height="25"/>
+        <img className="countryFlag" loading="lazy" src={flagImage} width="25" height="25"/>
       </div>
     );
   });
@@ -57,7 +57,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
       items.add(
         'country-flag',
         <div className="ipinfo" id="countryCode">
-          <img className="countryFlag post" src={flagImage} alt={countryFlag} width="25" height="25"/>
+          <img className="countryFlag post" loading="lazy" src={flagImage} alt={countryFlag} width="25" height="25"/>
         </div>
       );
     }
