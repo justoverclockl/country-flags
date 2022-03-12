@@ -50,6 +50,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
   extend(CommentPost.prototype, 'headerItems', function (items) {
     if (app.forum.attribute('justoverclock-country-flags.showFlagsOnPosts') === true) {
       const user = this.attrs.post.user();
+      if (!user) return;
       let countryFlag = user.countryCode();
       let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
       if (countryFlag === '') return;
