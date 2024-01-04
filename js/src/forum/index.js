@@ -18,7 +18,7 @@ app.initializers.add('justoverclock/user-country-info', () => {
   extend(UserCard.prototype, 'infoItems', function (items) {
     const user = this.attrs.user;
     let countryFlag = user.countryCode();
-    if (countryFlag === '') return;
+    if (countryFlag === '' || countryFlag === 'Clicca per scegliere la tua nazionalità') return;
     let flagImage = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + countryFlag + '.svg';
 
     items.add(

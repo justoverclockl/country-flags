@@ -11,8 +11,8 @@ export default class AddCountryCodeField extends Component {
     return (
       <fieldset className="Settings-theme">
         <legend>{app.translator.trans('justoverclock-country-flags.forum.inputCountryCode')}</legend>
-        <select className="FormControl countryCode" id="country" name="country" value={this.countryCode} onblur={this.saveValue.bind(this)}>
-          <option>{app.translator.trans('justoverclock-country-flags.forum.clickToSelectCountry')}</option>
+        <select className="FormControl countryCode" id="country" name="country" value={this.countryCode} onchange={this.saveValue.bind(this)}>
+          <option selected>{app.translator.trans('justoverclock-country-flags.forum.clickToSelectCountry')}</option>
           <option value="AF">Afghanistan</option>
           <option value="AX">Aland Islands</option>
           <option value="AL">Albania</option>
